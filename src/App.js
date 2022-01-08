@@ -2,7 +2,7 @@ import React from "react";
 import logo from './logo.svg';
 import './App.css';
 import Header from "./components/Header.js";
-import Form from "./components/Form.js";
+import Footer from "./components/Footer.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import { Container, Row, Col } from 'react-grid-system';
@@ -39,6 +39,7 @@ function App() {
         <SMSForm />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
