@@ -1,14 +1,13 @@
 nav{
-    position:fixed;
+    /* position:fixed; */
     height:64px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
     background-color: #abdbdd;
-    padding-top: 0px;
-    padding-bottom: 0px;
+
 }
 
 .vaxlogo{
-    position:fixed;
+    /* position:fixed; */
     float: left;
     margin-left: 30px;
     margin-top:10px;

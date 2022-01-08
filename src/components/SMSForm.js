@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './SMSForm.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Button from 'react-bootstrap/Button';
 
 class SMSForm extends Component {
     // constructor
@@ -85,9 +87,9 @@ class SMSForm extends Component {
                         onChange={this.onHandleChange}
                     />
                 </div>
-                <button type="submit" disabled={this.state.submitting}>
+                <Button type="submit" className="custom-btn" disabled={this.state.submitting}>
                     Send message
-                </button>
+                </Button>{' '}
             </form>
         );
     }
