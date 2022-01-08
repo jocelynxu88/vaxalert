@@ -18,14 +18,14 @@ function App() {
 
         <Container>
           <Row>
-            <Col md={8}>
+            <Col md={7}>
               <div className="intro">
                 <h1>Get notified.</h1>
                 <h1>Get vaccinated.</h1>
-                <Button variant="info">Start Now</Button>{' '}
+                <p>The go-to site to get vaxxed to the max(ed)</p>
               </div>
             </Col>
-            <Col md={4}>
+            <Col md={5}>
               <div className="cutegraphic">
                 {/* <img alt="vaccinegraphic" src="https://images-na.ssl-images-amazon.com/images/I/8136d0VMhSL.jpg" /> */}
                 <AlertGraphic/>

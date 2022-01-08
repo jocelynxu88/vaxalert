@@ -25,10 +25,12 @@
 }
 
 
-.intro-h1{
-  font-size: large;
+h1{
+  font-size: 4em !important;
 }
-
+p{
+  font-size: 25px !important;
+}
 .formlayout{
   margin:10%;
 }
