@@ -1,5 +1,4 @@
 import React from "react";
-import logo from './logo.svg';
 import './App.css';
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
@@ -8,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import { Container, Row, Col } from 'react-grid-system';
 import SMSForm from "./components/SMSForm";
+import {ReactComponent as AlertGraphic} from "./components/AlertGraphic.svg";
 
 
 function App() {
@@ -27,7 +27,9 @@ function App() {
             </Col>
             <Col md={4}>
               <div className="cutegraphic">
-                <img alt="vaccinegraphic" src="https://images-na.ssl-images-amazon.com/images/I/8136d0VMhSL.jpg" />
+                {/* <img alt="vaccinegraphic" src="https://images-na.ssl-images-amazon.com/images/I/8136d0VMhSL.jpg" /> */}
+                <AlertGraphic/>
+                {/* <img src={AlertGraphic}/> */}
               </div>
             </Col>
           </Row>

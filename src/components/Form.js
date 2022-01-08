@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 
@@ -52,9 +52,6 @@ function Form() {
                 </label>
                 <label>Moderna
                     <input name="vaccine" type="checkbox" value="MOERNA"/>
-                </label>
-                <label>AstraZeneca
-                    <input name="vaccine" type="checkbox" value="PFIZER"/>
                 </label>
             </div>
         </label>
