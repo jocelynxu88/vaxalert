@@ -42,14 +42,13 @@ function checkAvailability(pharmJson, pedPfizer, pfizer, moderna, astra) {
 function getPharmaciesAPI() {
   postalCode = 'L7G0A9';
   let link = `https://covid19.pchealth.ca/api/data/Get?address=${postalCode},%20ON,%20Canada&page=0&nelat=0&nelng=0&swlat=0&swlng=0`;
-  //link = 'https://facebook.github.io/react-native/movies.json';
-  axios.get(link)    
+  axios.get(link)
     .then((response) => {
       //console.log(response.data)
-      let pedPfizer = true;
+      let pedPfizer = false;
       let pfizer = true;
       let moderna = true;
-      let astra = true;
+      let astra = false;
       let pharmaciesAll = response.data;
       let pharmacies = pharmaciesAll.results;
       for (let i = 0; i < pharmacies.length; i++) {
@@ -58,6 +57,8 @@ function getPharmaciesAPI() {
         if (!(vaccine === "none")) {
           console.log(vaccine + pharmacies[i].storeName);
           console.log(vaccine + pharmacies[i].storeURL);
+          sendMessage(vaccine, pharmacies[i].storeName, pharmacies[i].storeURL, pharmacies[i].address);
+          break;
         }
       }
     })
@@ -69,13 +70,66 @@ function getPharmaciesAPI() {
 // setInterval(getPharmaciesAPI, checkingFrequency);
 getPharmaciesAPI();
 
+// sends message directly without using a json or post request
+// https://www.twilio.com/docs/sms/quickstart/node
+function sendMessage(vaccine, storeName, storeURL, address) {
+  client.messages
+  .create({
+     body:  `There is a ${vaccine} vaccine available at ${storeName}: ${address} \nBook your appointment here: ${storeURL}`,
+     from: process.env.TWILIO_PHONE_NUMBER,
+     to: '+' // insert phone number here
+   })
+  .then(message => console.log(message.sid));
+}
+
+/*
+// message sending function that would use the post request written for the SMS form
+function sendMessageTest(vaccine, storeName, storeURL, address) {
+  state = {
+    message: {
+        to: '',
+        body: ''
+    },
+    submitting: false,
+    error: false
+  };
+
+  fetch('/api/messages', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(state.message)
+  })
+    .then(res => res.json())
+    .then(data => {
+        if(data.success) {
+            this.setState({
+                error: false,
+                submitting: false,
+                message: {
+                    to: '',
+                    body: `There is a ${vaccine} vaccine available at ${storeName}: ${address}. \nBook here: ${storeURL}`
+                }
+            });
+        }
+        else {
+            this.setState({
+                error:true,
+                submitting: false
+            });
+        }
+    });
+}
+*/
+
 app.get('/api/greeting', (req, res) => {
     const name = req.query.name || 'World';
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
-  
+
 app.post('/api/messages', (req, res) => {
     res.header('Content-Type', 'application/json');
     client.messages
