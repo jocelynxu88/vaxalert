@@ -41,94 +41,70 @@ import './Form.css';
 //   export default EntryForm;
 
 function EntryForm() {
-    const [inputs, setInputs] = useState({});
+    const [user, setUser] = useState({
+        name: "", postalcode: "", pedpfizer: false, pfizer: false, moderna: false, email: "", phone:""
+    });
 
-    const handleChange = (event) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs(values => ({...values, [name]: value}))
-    }
+    // const handleChange = (event) => {
+    //   const name = event.target.name;
+    //   const value = event.target.value;
+    //   setUser(values => ({...values, [name]: value}))
+    // }
+    function handleChange(event){
+          const{name,value} = event.target;
+
+          setUser(prevInput =>{
+              return{
+                  ...prevInput,
+                  [name]:value
+              }
+
+          })
+        }
+        
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      alert("submitted");
+      console.log(user);
     }
   
     return (
       <form onSubmit={handleSubmit}>
-        {/* <div class="form-group">
-            <label for="location">Location</label>
-            <select class="form-control" id="location">
-            <option>Select...</option>
-            <option>Ottawa</option>
-            <option>Owen Sound</option>
-            <option>London</option>
-            <option>Hamilton</option>
-        </select>
-        </div> */}
-        <div class="form-group">
-             <label for="postalcode">Postal Code</label>
-             <input type="text" class="form-control" id="postalcode" placeholder="e.g. A1B 2C3" />
+        
+        <div className="form-group">
+             <label >Full Name</label>
+             <input onChange={handleChange} name="name" value={user.name} type="text" className="form-control" id="fullname" placeholder="e.g. Jane Doe" />
         </div>
-        <div class="form-group">
-             <label for="fullname">Full Name</label>
-             <input type="text" class="form-control" id="fullname" placeholder="e.g. Jane Doe" />
+        <div className="form-group">
+             <label>Postal Code</label>
+             <input onChange={handleChange} name="postalcode" value={user.postalcode} type="text" className="form-control" id="postalcode" placeholder="e.g. A1B 2C3"  />
         </div>
         
             <label> Type of Vaccine: 
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="vaccine1" value="PEDPFIZER" />
-                <label class="form-check-label" for="vaccine1">Pediatric Pfizer</label>
+                <div className="form-check">
+                <input onChange={handleChange} name="pedpfizer"value={user.pedpfizer} className="form-check-input" type="checkbox" id="vaccine1" value={true} />
+                <label className="form-check-label" >Pediatric Pfizer</label>
                 </div>
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="vaccine2" value="PFIZER" />
-                <label class="form-check-label" for="vaccine2">Pfizer</label>
+                <div className="form-check">
+                <input onChange={handleChange} name="pfizer"value={user.pfizer} className="form-check-input" type="checkbox" id="vaccine2" value={true}/>
+                <label className="form-check-label" >Pfizer</label>
                 </div>
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="vaccine3" value="MODERNA" />
-                <label class="form-check-label" for="vaccine3">Moderna</label>
+                <div className="form-check">
+                <input onChange={handleChange} name="moderna"value={user.moderna} className="form-check-input" type="checkbox" id="vaccine3" value={true} />
+                <label className="form-check-label" >Moderna</label>
                 </div>
             </label>
-            <div class="form-group">
-    <label for="email">Email address</label>
-    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="example@email.com"/>
+            <div className="form-group">
+    <label >Email address</label>
+    <input onChange={handleChange} name="email"value={user.email} type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="example@email.com"/>
 
   </div>
         
-            
-        {/* <div>
-                
-        <label>Type of Vaccine:
-            <div>
-                <label>Pediatric Pfizer
-                    <input name="vaccine" type="checkbox" value="PFIZER"/>
-                </label>
-                <label>Pfizer
-                    <input name="vaccine" type="checkbox" value="PFIZER"/>
-                </label>
-                <label>Moderna
-                    <input name="vaccine" type="checkbox" value="MOERNA"/>
-                </label>
-            </div>
-        </label>
-        </div> */}
-        {/* <div>
-            <label>Email:
-                <input name="email" type="email" placeholder="example@email.com" required />
-
-            </label>
-        </div> */}
-        {/* <div class="form-group">
-            <label>Phone Number:
-                <input  name="phone" type="tel" placeholder="(###)###-####" required />
-
-            </label>
-        </div> */}
-        <div class="form-group">
-             <label for="phone">Phone Number</label>
-             <input type="tel" class="form-control" id="phone" placeholder="(###) ###-####" required/>
+        <div className="form-group">
+             <label >Phone Number</label>
+             <input onChange={handleChange}name="phone" value={user.phone} type="tel" className="form-control" id="phone" placeholder="(###) ###-####" required/>
         </div>
-        <Button type="submit" className="custom-btn" >
+        <Button onClick={handleSubmit} type="submit" className="custom-btn btn-lg" >
             Submit
         </Button>{' '}
       </form>
