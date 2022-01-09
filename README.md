@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# VaxAlert
+![image](https://user-images.githubusercontent.com/68765813/148687574-d567df99-4716-4032-9679-5c2405a12cf5.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 😷🦠Inspiration
+Ensuring that everyone has the ability to book a COVID-19 vaccine is important, now more than ever.
+The process of booking a vaccine through pharmacies can be long and tedious, as users must navigate to *each* individual pharmacy site to view availability. Regardless of organizations such as Vaccine Hunters Canada which aid eligible Canadians in finding vaccines, finding a spot to a vaccination appointment locally is still almost impossible. Our project, VaxAlert, aims to address this by allowing users the opportunity to select a location and receive a text message notification when any pharmacy in that region has available vaccine times.
 
-## Available Scripts
+## 💉 What it does
+The premise of our project is based around a user-friendly, responsive webpage where visitors can enter their contact information, needed vaccine type, and location. While storing this information, a web scraping program would be used to flag when vaccine appointments become available on a pharmacy website. Based on the collected information, a notification will then be sent to the appropriate people by text. This eliminates the burden of constantly checking several different pharmacy websites and signing up for dozens of waitlists individually, allowing the community to become better protected from the pandemic.
 
-In the project directory, you can run:
+## 🚀 Launch
+1. Install the following dependecies
+    * npm
+    * react-bootstrap bootstrap@5.1.3
+    * react-grid-system
+    * twilio (npm install twilio)
+    * express body-parser
+    * axios
+2. In the project directory, run: `npm run dev`. 
+3. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## 🖥 Usage
+1. Enter your information (e.g., name, postal code, vaccine, email address, and phone number) into the form.
+![image](https://user-images.githubusercontent.com/68765813/148687687-7c486a39-9991-42bb-9040-e123d701597b.png)
+
+2. Submit the form and wait for your vaccine notification!
+![image](https://user-images.githubusercontent.com/68765813/148687741-87af2842-663e-456f-baf9-c888f2824355.png)
+
+
+## Other Scripts
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs the frontend. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### `npm server`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Runs the backend express server.
+Opens [http://localhost:3001](http://localhost:3001) to view it in your browser.
