@@ -22,7 +22,7 @@ const checkingFrequency = 5 * 60000; // first number corresponds to frequency in
 let requestCounter = 0;
 
 // main functionality -- searching jsons
-function checkAvailability(pharmJson, pedPfizer, pfizer, moderna, astra) {
+function checkAvailability(pharmJson, pedPfizer, pfizer, moderna) {
   vaccine_available = "none";
   if (pedPfizer && pharmJson.isPediatricPfizer) {
     vaccine_available = "Pediatric Pfizer";
@@ -33,31 +33,23 @@ function checkAvailability(pharmJson, pedPfizer, pfizer, moderna, astra) {
   else if (moderna && pharmJson.isModerna) {
     vaccine_available ="Moderna";
   }
-  else if (astra && pharmJson.isAstraZeneca) {
-    vaccine_available ="AstraZeneca";
-  }
   return vaccine_available;
 }
 // get json information
-function getPharmaciesAPI() {
-  postalCode = 'L7G0A9';
+function getPharmaciesAPI(postalCode, pedPfizer, pfizer, moderna, phoneNumber, name) {
   let link = `https://covid19.pchealth.ca/api/data/Get?address=${postalCode},%20ON,%20Canada&page=0&nelat=0&nelng=0&swlat=0&swlng=0`;
   axios.get(link)
     .then((response) => {
       //console.log(response.data)
-      let pedPfizer = false;
-      let pfizer = true;
-      let moderna = true;
-      let astra = false;
       let pharmaciesAll = response.data;
       let pharmacies = pharmaciesAll.results;
       for (let i = 0; i < pharmacies.length; i++) {
-        vaccine = checkAvailability(pharmacies[i], pedPfizer, pfizer, moderna, astra);
+        vaccine = checkAvailability(pharmacies[i], pedPfizer, pfizer, moderna);
         // if vaccine exists, then break
         if (!(vaccine === "none")) {
           console.log(vaccine + pharmacies[i].storeName);
           console.log(vaccine + pharmacies[i].storeURL);
-          sendMessage(vaccine, pharmacies[i].storeName, pharmacies[i].storeURL, pharmacies[i].address);
+          sendMessage(vaccine, pharmacies[i].storeName, pharmacies[i].storeURL, pharmacies[i].address, phoneNumber, name);
           break;
         }
       }
@@ -68,16 +60,16 @@ function getPharmaciesAPI() {
 }
 // setInterval, performs function every X milliseconds
 // setInterval(getPharmaciesAPI, checkingFrequency);
-getPharmaciesAPI();
+// getPharmaciesAPI();
 
 // sends message directly without using a json or post request
 // https://www.twilio.com/docs/sms/quickstart/node
-function sendMessage(vaccine, storeName, storeURL, address) {
+function sendMessage(vaccine, storeName, storeURL, address, phoneNumber, name) {
   client.messages
   .create({
-     body:  `There is a ${vaccine} vaccine available at ${storeName}: ${address} \nBook your appointment here: ${storeURL}`,
+     body:  `Hello ${name}! There is a ${vaccine} vaccine available at ${storeName}: ${address} \nBook your appointment here: ${storeURL}`,
      from: process.env.TWILIO_PHONE_NUMBER,
-     to: '+' // insert phone number here
+     to: phoneNumber
    })
   .then(message => console.log(message.sid));
 }
@@ -147,6 +139,17 @@ app.post('/api/messages', (req, res) => {
         });
   });
 
+app.post('/check-availability', (req, res) => {
+    //res.header('Content-Type', 'application/json');
+    console.log("hey" + req.body.moderna);
+    getPharmaciesAPI(req.body.postalcode, req.body.pedpfizer, req.body.pfizer, req.body.moderna, req.body.phone, req.body.name);
+    /*client.messages
+        .create({
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: req.body.to,
+            body: req.body.body
+        })*/
+      });
 app.listen(3001, () =>
   console.log('Express server is running on localhost:3001')
 );

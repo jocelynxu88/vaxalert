@@ -66,7 +66,20 @@ function EntryForm() {
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log(user);
-    }
+      
+      
+      fetch("/check-availability", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      };
+    
+    
   
     return (
       <form onSubmit={handleSubmit}>
@@ -77,7 +90,7 @@ function EntryForm() {
         </div>
         <div className="form-group">
              <label>Postal Code</label>
-             <input onChange={handleChange} name="postalcode" value={user.postalcode} type="text" className="form-control" id="postalcode" placeholder="e.g. A1B 2C3"  />
+             <input onChange={handleChange} name="postalcode" value={user.postalcode} type="text" className="form-control" id="postalcode" placeholder="e.g. A1B2C3"  />
         </div>
         
             <label> Type of Vaccine: 
@@ -102,7 +115,7 @@ function EntryForm() {
         
         <div className="form-group">
              <label >Phone Number</label>
-             <input onChange={handleChange}name="phone" value={user.phone} type="tel" className="form-control" id="phone" placeholder="(###) ###-####" required/>
+             <input onChange={handleChange}name="phone" value={user.phone} type="tel" className="form-control" id="phone" placeholder="+###########" required/>
         </div>
         <Button onClick={handleSubmit} type="submit" className="custom-btn btn-lg" >
             Submit
