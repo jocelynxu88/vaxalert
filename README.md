@@ -27,7 +27,7 @@ The premise of our project is based around a user-friendly, responsive webpage w
 
    <img src="https://user-images.githubusercontent.com/68765813/148687741-87af2842-663e-456f-baf9-c888f2824355.png" alt="text notification" width="300">
 
-## Other Scripts
+## 💻 Other Scripts
 
 #### `npm start`
 
@@ -39,5 +39,5 @@ Runs the frontend. Open [http://localhost:3000](http://localhost:3000) to view i
 Runs the backend express server.
 Opens [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
-## Contributors
+## 👩‍💻 Contributors
 Sarah Arnold, Kailin Chu, Nishckria Nataraja Babu, Jocelyn Xu
