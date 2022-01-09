@@ -22,52 +22,38 @@ const checkingFrequency = 5 * 60000; // first number corresponds to frequency in
 let requestCounter = 0;
 
 // main functionality -- searching jsons
-function checkAvailability(pharmJson, pedPfizer, pfizer, moderna, astra) {
-  vaccine_available = "none";
-  if (pedPfizer && pharmJson.isPediatricPfizer) {
-    vaccine_available = "Pediatric Pfizer";
-  }
-  else if (pfizer && pharmJson.isPfizer) {
-    vaccine_available = "Pfizer";
-  }
-  else if (moderna && pharmJson.isModerna) {
-    vaccine_available ="Moderna";
-  }
-  else if (astra && pharmJson.isAstraZeneca) {
-    vaccine_available ="AstraZeneca";
-  }
-  return vaccine_available;
-}
+
 // get json information
-function getPharmaciesAPI() {
+//function getPharamciesAPI() {
   postalCode = 'L7G0A9';
   let link = `https://covid19.pchealth.ca/api/data/Get?address=${postalCode},%20ON,%20Canada&page=0&nelat=0&nelng=0&swlat=0&swlng=0`;
-  //link = 'https://facebook.github.io/react-native/movies.json';
-  axios.get(link)    
-    .then((response) => {
-      //console.log(response.data)
-      let pedPfizer = true;
-      let pfizer = true;
-      let moderna = true;
-      let astra = true;
-      let pharmaciesAll = response.data;
-      let pharmacies = pharmaciesAll.results;
-      for (let i = 0; i < pharmacies.length; i++) {
-        vaccine = checkAvailability(pharmacies[i], pedPfizer, pfizer, moderna, astra);
-        // if vaccine exists, then break
-        if (!(vaccine === "none")) {
-          console.log(vaccine + pharmacies[i].storeName);
-          console.log(vaccine + pharmacies[i].storeURL);
-        }
-      }
-    })
-    .catch((error) => {
+  link = 'https://facebook.github.io/react-native/movies.json';
+  const res = await axios.get(link); 
+  res.constructor.name;
+
+
+
+  /*
+   .then((response) => response.json())
+   .then((responseJson) => {
+     return responseJson.movies;
+   })
+   .catch((error) => {
      console.error(error);
-    });
-}
+   });*/
+//}
+
 // setInterval, performs function every X milliseconds
-// setInterval(getPharmaciesAPI, checkingFrequency);
-getPharmaciesAPI();
+const intervalId = setInterval(function () {
+  request()
+  if (err) {
+    console.log('Request Error - ${err}');
+  }
+  else {
+    // check whether 
+    
+  }
+}, checkingFrequency)
 
 app.get('/api/greeting', (req, res) => {
     const name = req.query.name || 'World';
