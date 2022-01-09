@@ -1,0 +1,9 @@
+.form-group{
+    padding-top:10px;
+    padding-bottom:15px;
+}
+
+.form-check-input:checked{
+    background-color: #076072;
+    border-color:#267E92;
+}

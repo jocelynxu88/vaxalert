@@ -1,0 +1,36 @@
+.App {
+  text-align: left;
+  background-color: #ebf0f2;
+}
+
+/* .Container-Col{
+  margin-top:100px;
+} */
+
+.cutegraphic{
+  height:30%;
+  margin-top:5%;
+  justify-content: center;
+  display:flex;
+  
+}
+
+.Button{
+  color:white;
+}
+
+.intro{
+  padding:20%;;
+  font-size: large;
+}
+
+
+h1{
+  font-size: 4em !important;
+}
+p{
+  font-size: 25px !important;
+}
+.formlayout{
+  margin:10%;
+}
