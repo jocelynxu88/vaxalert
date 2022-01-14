@@ -72,7 +72,7 @@ function checkPharmacies(postalCode, pedPfizer, pfizer, moderna, phoneNumber, na
 function sendMessage(vaccine, storeName, storeURL, address, phoneNumber, name) {
   client.messages
   .create({
-     body:  `Hello ${name}! There is a ${vaccine} vaccine available at ${storeName}: ${address} \nBook your appointment here: ${storeURL}`,
+     body:  `Hello ${name}! There is a ${vaccine} vaccine available at ${storeName}: ${address} \nFind an appointment here: ${storeURL}`,
      from: process.env.TWILIO_PHONE_NUMBER,
      to: phoneNumber
    })

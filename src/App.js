@@ -6,7 +6,6 @@ import EntryForm from "./components/Form.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import { Container, Row, Col } from 'react-grid-system';
-import SMSForm from "./components/SMSForm";
 import {ReactComponent as AlertGraphic} from "./components/AlertGraphic.svg";
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Source+Sans+Pro:wght@300;700&display=swap');

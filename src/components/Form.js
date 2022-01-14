@@ -115,7 +115,7 @@ function EntryForm() {
         
         <div className="form-group">
              <label >Phone Number</label>
-             <input onChange={handleChange}name="phone" value={user.phone} type="tel" className="form-control" id="phone" placeholder="+###########" required/>
+             <input onChange={handleChange}name="phone" value={user.phone} type="tel" className="form-control" id="phone" placeholder="+1##########" required/>
         </div>
         <Button onClick={handleSubmit} type="submit" className="custom-btn btn-lg" >
             Submit
